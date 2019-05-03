@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel= "stylesheet" href= "{% static 'css/profile.css' %}" />
+    <link rel= "stylesheet" href= "{% static 'css/template.css' %}" />
+    <link href="http://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet" type="text/css">
+    <title>My Django Project</title>
+</head>
+<body>
+
+	<!--========== HEADER ==========-->
+	<div class="header">
+		<a href="#body" class="logo">Almaty Cinema</a>
+		<div class="header-links">
+			<a class="active" href="/profile/">My profile</a>
+			<a href="/cinemas/">Buy Ticket</a>
+		</div>
+	</div>
+
+	<!--========== CONTENT ==========-->
+	<div class="content">
+		<!--========== Contents will change up to page ==========-->
+		<div class="inner-content">
+    		<h2>My Profile</h2>
+			<h3>User name: {{ username }}</h3>
+			<h3>User password: {{ userpass }}</h3>
+
+			<ul class="my-links">
+				<li><a href="/history/">History</a></li>
+				<li><a href="/cinemas/">Buy Ticket</a></li>
+				<li><a href="/logout/">Log out</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<!--========== FOOTER ==========-->
+	<div class="footer">
+		<p>Enjoy watching</p>
+	</div>
+
+</body>
+</html>

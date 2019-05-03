@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel= "stylesheet" href= "{% static 'css/history.css' %}" />
+    <link rel= "stylesheet" href= "{% static 'css/template.css' %}" />
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>My Django Project</title>
+    <style type="text/css">
+    	table {
+    		border: 1px solid #aaa;
+        	border-spacing: 0;
+        }
+        th, td {
+			width: 100px;
+        	padding: 10px 5px;
+        }
+        th {
+        	padding: 10px;
+        	font-size: 16px;
+        }
+        table a {
+        	color: black;
+        }
+        tr:first-child {
+        	padding-bottom: 10px;
+       		background: #6AAAEA;
+        }
+        td {
+        	text-align: center;
+        	font-size: 14px;
+        }
+        .cinema {
+        	width: 150px;
+        }
+        .film{
+        	width: 200px;
+        	height: 50px;
+        }
+        .time, .hall, .seats,
+        .kids, .students, .adults,
+        .total{
+        	width: 80px;
+        }
+    </style>
+</head>
+<body>
+   <!--========== HEADER ==========-->
+	<div class="header">
+		<a href="#body" class="logo">Almaty Cinema</a>
+		<div class="header-links">
+			<a href="/profile/">My profile</a>
+			<a href="/cinemas/">Buy Ticket</a>
+		</div>
+	</div>
+
+	<!--========== CONTENT ==========-->
+	<div class="content">
+		<!--========== Contents will change up to page ==========-->
+		<div class="inner-content">
+			<h2> My History</h2>
+			<table>
+				<tr>
+					<th class="cinema">Cinema</th>
+					<th class="film">Film</th>
+					<th class="time">Time</th>
+					<th class="hall">Hall #</th>
+					<th class="seats">Seats</th>
+					<th class="kids">Kids</th>
+					<th class="students">Students</th>
+					<th class="adults">Adults</th>
+					<th class="total">Total Cost</th>
+				</tr>
+
+				{% for o in orders %}
+				<tr>
+					<td class="cinema">{{o.cinema}}</td>
+					<td class="film">{{o.film}}</td>
+					<td class="time">{{o.time}}:00</td>
+					<td class="hall">{{o.hall}}</td>
+					<td class="seats">{{o.seats}}</td>
+					<td class="kids">{{o.tickets.kids}}</td>
+					<td class="students">{{o.tickets.students}}</td>
+					<td class="adults">{{o.tickets.adults}}</td>
+					<td class="total">{{o.totalCost}} тг</td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+
+	<!--========== FOOTER ==========-->
+	<div class="footer">
+		<p>Enjoy watching</p>
+	</div>
+</body>
+</html>

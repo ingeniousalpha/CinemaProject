@@ -1,0 +1,100 @@
+body{
+	margin: 0;
+	padding: 0;
+	font-family: "Arial";
+}
+.header {
+  	overflow: hidden;
+  	background-color: #2D2E30;
+  	padding: 20px 20px;
+}
+a {
+	text-decoration: none;
+	color: white;
+}
+/* Style the header links */
+.header a {
+  	float: left;
+  	text-align: center;
+  	padding: 12px;
+  	font-size: 18px; 
+  	line-height: 25px;
+  	border-radius: 4px;
+}
+
+/* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
+.my-links li {
+  	width: 140px;
+  	text-align: center;
+  	font-size: 18px; 
+  	line-height: 25px;
+  	background: #1E90FF;
+  	margin-bottom: 1px;
+}
+.my-links a {
+    display: block;
+    padding: 12px;
+}
+
+.my-links a:visited {
+	color: white;
+}
+
+.my-links li:hover {
+	background-color: #1A7EE1;
+	transition: background-color 0.3s ease-in-out;
+}
+
+.header a.logo {
+  	font-size: 25px;
+  	color: #4BBAFF;
+}
+/* Change the background color on mouse-over */
+.header a:hover {
+  	background-color: #6AAAEA;
+}
+.header a.logo:hover{
+  	background-color: #2D2E30;
+  	color: white;
+  	transition: color 0.2s;
+}
+
+/* Style the active/current link*/
+.header a.active {
+  	background-color: dodgerblue;
+  	color: white;
+}
+
+/* Float the link section to the right */
+.header-links {
+  	float: right;
+}
+
+ul {
+  	list-style-type: none;
+  	margin: 0;
+  	padding: 0;
+}	
+.inner-content {
+	min-height: 500px;
+	width: 900px;
+	padding: 10px 10px;
+	margin: 20px auto;
+	border: 2px solid #666;
+}
+
+.footer {
+	background: #2D2E30;
+	line-height: 100px;
+	height: 100px;
+	width: 100%;
+	text-align: center;
+	
+}
+.footer p {
+	display: inline-block;
+	line-height: 1.5;
+	vertical-align: middle;
+	font: 26px "Helvetica";
+	color: #4BBAFF;
+}

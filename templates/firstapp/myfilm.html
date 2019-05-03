@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel= "stylesheet" href= "{% static 'css/myfilm.css' %}" />
+    <link rel= "stylesheet" href= "{% static 'css/template.css' %}" />
+	<link rel="stylesheet" type="text/css" href="style.css">
+    <title>My Django Project</title>
+    <style type="text/css">
+    	.film-schedule,
+    	.film-info {
+    		width: 900px;
+    		min-height: 300px;
+    		box-sizing: border-box;
+    		padding: 15px;
+    	}
+    	.film-schedule h2 {
+    		margin-left: 10px;
+    	}
+ 	   	.text-info {
+ 	   		box-sizing: border-box;
+ 	   		padding: 20px;
+ 	   		width: 573px;
+ 	   		height: 302px;
+    	}
+    	.text-info h1 {
+    		margin:0;
+    		margin-bottom: 40px;
+    	}
+    	.info-block {
+    		display: inline-block;
+    		float: left;
+    		border: 1px solid black;
+    		/*background: #999;*/
+    		margin-right: 30px;
+    	}
+    	.f-image {
+    		width: 200px;
+    		height: 300px;
+    	}
+    	.f-image img {
+    		width: 200px;
+    		height: 300px;
+    	}
+    	.film-info::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        table {
+        	border: 2px solid black;
+        	border-spacing: 0;
+        }
+        th, td {
+			box-sizing: border-box;
+			width: 100px;
+        	padding: 10px;
+        }
+        td:not(.time){
+        	text-align: center;
+        }
+        th.time {
+        	text-align: left;
+        	width: 400px;
+        	padding-left: 20px;
+        }
+        tr:hover {
+        	background: #6AAAEA;
+        }
+        table a {
+        	color: black;
+        }
+    </style>
+</head>
+<body>
+    <!--========== HEADER ==========-->
+	<div class="header">
+		<a href="#body" class="logo">Almaty Cinema</a>
+		<div class="header-links">
+			<a href="/profile/">My profile</a>
+			<a href="/cinemas/">Buy Ticket</a>
+		</div>
+	</div>
+
+	<!--========== CONTENT ==========-->
+	<div class="content">
+		<!--========== Contents will change up to page ==========-->
+		<div class="inner-content">
+			<div class="film-info">
+				<div class="f-image info-block">
+					<img src="{% static path %}">
+				</div>
+				<div class="text-info info-block">
+					<h1 class="f-title">{{ film.1 }}</h1>
+					<p class="f-desc">{{ film.2 }}</p>
+				</div>
+			</div>
+
+			<div class="film-schedule">
+				<h2>Schedule</h2>
+				<table>
+					<tr>
+						<th class="time">Time</th>
+						<th>Kids</th>
+						<th>Students</th>
+						<th>Adults</th>
+						<th>Hall #</th>
+					</tr>
+
+					{% for s in film.3 %}
+					<tr>
+						<td class="time"><a href="/booking/?sid={{s.id}}">{{ s.time }}:00</a></td>
+						<td>{{ s.kids }} тг</td>
+						<td>{{ s.students }} тг</td>
+						<td>{{ s.adults }} тг</td>
+						<td>{{ s.hall }}</td>
+					</tr>
+					{% endfor %}
+
+				</table>
+			</div>
+
+		</div>
+	</div>
+
+	<!--========== FOOTER ==========-->
+	<div class="footer">
+		<p>Enjoy watching</p>
+	</div>
+</body>
+</html>

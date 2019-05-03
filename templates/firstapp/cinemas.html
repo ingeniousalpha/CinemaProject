@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!-- {% load staticfiles %} -->
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>My Django Project</title>
+    <link rel= "stylesheet" href= "{% static 'css/cinemas.css' %}" />
+    <link rel= "stylesheet" href= "{% static 'css/template.css' %}" />
+    <link rel= "stylesheet" href= "style.css" />
+    <style type="text/css">
+    	h3, p {
+    		margin: 0;
+    		paddin: 0;
+    	}
+    	.cin-block h3 {
+    		margin-bottom: 5px;
+    	}
+    	.cin-block {
+    		width: 96%;
+    		height: 50px;
+    		padding: 15px;
+    		margin-bottom: 20px;
+    	}
+
+    	.cin-block a {
+    		position: absolute;
+    		display: block;
+    		width: 65%;
+    		height: 50px;
+    	}
+    	.cin-block input[type="radio"] {
+			position: absolute;
+			opacity: 0;
+			cursor: pointer;
+			height: 0;
+			width: 0;
+    	}
+    </style>
+</head>
+<body>
+    <!--========== HEADER ==========-->
+	<div class="header">
+		<a href="#body" class="logo">Almaty Cinema</a>
+		<div class="header-links">
+			<a href="/profile/">My profile</a>
+			<a class="active" href="/cinemas/">Buy Ticket</a>
+		</div>
+	</div>
+
+	<!--========== CONTENT ==========-->
+	<div class="content">
+		<!--========== Contents will change up to page ==========-->
+		<div class="inner-content">
+			<h2> Cinemas</h2>
+			{% for c in cins %}
+				<div class="cin-block">
+					<a href="/films/{{c.1}}/?cid={{c.0}}"></a>
+					<h3 class="cname">Name of Cinema: {{ c.1 }}</h3>
+					<p class="caddress">Address: {{ c.2 }}</p>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+
+	<!--========== FOOTER ==========-->
+	<div class="footer">
+		<p>Enjoy watching</p>
+	</div>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel= "stylesheet" href= "{% static 'css/booking.css' %}" />
+    <link rel= "stylesheet" href= "{% static 'css/template.css' %}" />
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>My Django Project</title>
+    <script type="text/javascript">
+		function choose(id, name){
+			var div = document.getElementById(id);
+			var key = document.getElementById(name).checked;
+			if (key == true){
+				div.style.background = "red";
+			}
+			else {
+				div.style.background = "#eee";
+			}
+		}
+    </script>
+    <style type="text/css">
+    	input[type="checkbox"] {
+    		display: none;
+    	}
+    	button {
+    		cursor: pointer;
+			width: 100px;
+			height: 100px;
+			border: none;
+			background: #4CAF50;
+			color: #FFF;
+			margin: 0;
+			padding: 10px;
+			font-size: 15px;
+    	}
+    	.seat {
+    		box-sizing: border-box;
+    		display: inline-block;
+    		float: left;
+    		padding: 10px;
+    		width: 100px;
+    		height: 100px;
+    		background: #eee;
+    		margin-right: 10px;
+    	}
+    	.seat:hover {
+    		box-shadow: 0 0 6px #555;
+    	}
+    	.seatrow {
+    		display: block;
+    		margin-bottom: 10px;
+    	}
+    	.seatrow::after{
+    		content: "";
+            display: table;
+            clear: both;
+    	}
+    </style>
+</head>
+<body>
+    <!--========== HEADER ==========-->
+	<div class="header">
+		<a href="#body" class="logo">Almaty Cinema</a>
+		<div class="header-links">
+			<a href="/profile/">My profile</a>
+			<a href="/cinemas/">Buy Ticket</a>
+		</div>
+	</div>
+
+	<!--========== CONTENT ==========-->
+	<div class="content">
+		<!--========== Contents will change up to page ==========-->
+		<div class="inner-content">
+			<h2>Film: {{filmname}}</h2>
+			<div class="seats-block"></div>
+			<form action="/resp/" method="post">
+				<div class="seatrow">
+				<label>
+					<input type="checkbox" name="seat-input" id="input1" class="myseat" value="{{1}}" onclick="choose('seat1', 'input1')">
+					<div id="seat1" class="seat">Seat {{s.0}}</div>
+				</label>
+				<label>
+					<input type="checkbox" name="seat-input" id="input2" class="myseat" value="{{2}}" onclick="choose('seat2', 'input2')">
+					<div id="seat2" class="seat">Seat 2</div>
+				</label>
+				<label>
+					<input type="checkbox" name="seat-input" id="input3" class="myseat" value="{{3}}" onclick="choose('seat3', 'input3')">
+					<div id="seat3" class="seat">Seat 3</div>
+				</label>
+				<label>
+					<input type="checkbox" name="seat-input" id="input4" class="myseat" value="{{4}}" onclick="choose('seat4', 'input4')">
+					<div id="seat4" class="seat">Seat 4</div>
+				</label>
+				<label>
+					<input type="checkbox" name="seat-input" id="input5" class="myseat" value="{{5}}" onclick="choose('seat5', 'input5')">
+					<div id="seat5" class="seat">Seat 5</div>
+				</label>
+				</div>
+
+				<div class="seatrow">
+				<label>
+					<input type="checkbox" name="seat-input" id="input6" class="myseat" value="{{1}}" onclick="choose('seat6', 'input6')">
+					<div id="seat6" class="seat">Seat {{s.0}}</div>
+				</label>
+				<label>
+					<input type="checkbox" name="seat-input" id="input7" class="myseat" value="{{2}}" onclick="choose('seat7', 'input7')">
+					<div id="seat7" class="seat">Seat 2</div>
+				</label>
+				<label>
+					<input type="checkbox" name="seat-input" id="input8" class="myseat" value="{{3}}" onclick="choose('seat8', 'input8')">
+					<div id="seat8" class="seat">Seat 3</div>
+				</label>
+				<label>
+					<input type="checkbox" name="seat-input" id="input9" class="myseat" value="{{4}}" onclick="choose('seat9', 'input9')">
+					<div id="seat9" class="seat">Seat 4</div>
+				</label>
+				<label>
+					<input type="checkbox" name="seat-input" id="input10" class="myseat" value="{{5}}" onclick="choose('seat10', 'input10')">
+					<div id="seat10" class="seat">Seat 5</div>
+				</label>
+				</div>
+				<button type="submit" onclick="alert('Your Order is accepted!')">Submit</button>
+			</form>
+
+		</div>
+	</div>
+
+	<!--========== FOOTER ==========-->
+	<div class="footer">
+		<p>Enjoy watching</p>
+	</div>
+</body>
+</html>

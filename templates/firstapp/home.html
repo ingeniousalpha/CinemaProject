@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel= "stylesheet" href= "{% static 'css/loginform.css' %}" />
+    <title>My Django Project</title>
+    <style>
+        body{
+            background: black;
+        }
+        body::after {
+            content: "";
+            background: url({% static 'images/av.jpg' %});
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            opacity: 0.7;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            z-index: -1;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="container">
+        <form id="logform" action="/login/" method="post">
+            {% csrf_token %}
+            <h3 class="title">Login Page</h3>
+            <fieldset>
+              <input name="username" placeholder="Your name" type="text" tabindex="1" required autofocus>
+            </fieldset>
+            <fieldset>
+              <input name="userpass" placeholder="Your password" type="password" tabindex="2" required>
+            </fieldset>
+            <fieldset>
+              <button name="login_btn" type="submit" id="contact-submit">Enter</button>
+            </fieldset>
+            <p id="copyright"><a href="/logup/" target="_self">Log Up</a></p>
+            {% if message != "" %}
+            <p id="msginfo">{{ message }}</p>
+            {% endif %}
+        </form>
+    </div>
+
+</body>
+</html>

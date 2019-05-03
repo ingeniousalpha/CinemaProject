@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <style>
+        p {
+            margin: 0;
+            padding: 0;
+        }
+        .films-wrapper {
+            box-sizing: border-box;
+            padding: 10px;
+            min-height: 441px;
+        }
+        .film-block a {
+            position: absolute;
+    		display: block;
+    		height: 375px;
+    		width: 250px;
+        }
+        .film-block {
+            display: inline-block;
+            float: left;
+            height: 441px;
+            width: 250px;
+            border-radius:  6px;
+            box-shadow: 0 0 5px #555;
+            margin-right: 65px;
+        }
+        .film-block:nth-child(3n) {
+            margin-right: 0;
+        }
+        .film-block:hover {
+            box-shadow: 0 0 12px #555;
+        }
+        .film-image {
+            border-radius:  6px 6px 0px 0px;
+            height: 375px;
+            width: 250px;
+            background: #666;
+
+        }
+        .film-image img {
+            border-radius:  6px 6px 0px 0px;
+            height: 375px;
+            width: 250px;
+        }
+        .film-title {
+            box-sizing: border-box;
+            height: 66px;
+            width: 250px;
+            padding: 15px;
+        }
+        .film-title p {
+            height: 36px;
+            margin-bottom: 10px;
+        }
+        .clearfix::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        .films-row {
+            margin-bottom: 50px;
+        }
+        .films-row:last-child {
+            margin-bottom: 20px;
+        }
+    </style>
+    <link rel= "stylesheet" href= "{% static 'css/films.css' %}" />
+    <link rel= "stylesheet" href= "{% static 'css/template.css' %}" />
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>My Django Project</title>
+</head>
+<body>
+    
+    <!--========== HEADER ==========-->
+    <div class="header">
+        <a href="#body" class="logo">Almaty Cinema</a>
+        <div class="header-links">
+            <a href="/profile/">My profile</a>
+            <a href="/cinemas/">Buy Ticket</a>
+        </div>
+    </div>
+
+    <!--========== CONTENT ==========-->
+    <div class="content">
+        <!--========== Contents will change up to page ==========-->
+        <div class="inner-content">
+            <h2> Films of the cinema: {{ cinema }}</h2>
+
+            <div class="films-wrapper">
+
+            {% for f in films %}
+                {% if f.3 %}
+                    <div class="films-row clearfix">
+                {% endif %}
+
+                <div class="film-block">
+                    <a class="film" href="/myfilm/?id={{f.0}}"></a>
+                    <div class="film-image"><img src="{% static f.5 %}" alt="{{f.1}}"></div>
+                    <div class="film-title"><p>{{ f.1 }}</p></div>
+                </div>
+
+                {% if f.4 %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+            </div>
+            
+        </div>
+    </div>
+
+    <!--========== FOOTER ==========-->
+    <div class="footer">
+        <p>Enjoy watching</p>
+    </div>
+
+</body>
+</html>

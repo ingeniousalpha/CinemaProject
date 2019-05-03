@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel= "stylesheet" href= "{% static 'css/booking.css' %}" />
+    <link rel= "stylesheet" href= "{% static 'css/template.css' %}" />
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>My Django Project</title>
+    <script type="text/javascript">
+		function choose(divid, input){
+			var div = document.getElementById(divid);
+			var key = document.getElementById(input).checked;
+			var c = document.getElementById(divid).className;
+			var isbooked = c.includes("booked");
+
+			if(isbooked) {
+				document.getElementById(input).checked = false;
+				return;
+			};
+
+			if (key == true){
+				div.style.background = "#4CAF50";
+			}
+			else {
+				div.style.background = "#eee";
+			}
+		}
+    </script>
+    <style type="text/css">
+    	input[type="checkbox"] {
+    		display: none;
+    	}
+    	button {
+    		display: block;
+    		cursor: pointer;
+			width: 100px;
+			border: none;
+			background: #4CAF50;
+			color: #FFF;
+			margin: 0;
+			padding: 20px 10px;
+			font-size: 15px;
+    	}
+    	button:hover {
+			background: #1A7EE1;
+			transition: background 0.3s;
+    	}
+    	.seat {
+    		box-sizing: border-box;
+    		display: inline-block;
+    		float: left;
+    		padding: 10px;
+    		width: 100px;
+    		height: 100px;
+    		background: #eee;
+    		margin-right: 10px;
+    	}
+    	.seat:hover {
+    		box-shadow: 0 0 6px #555;
+    	}
+    	.seatrow {
+    		display: block;
+    		margin-bottom: 10px;
+    	}
+    	.seatrow::after{
+    		content: "";
+            display: table;
+            clear: both;
+    	}
+    	.booked {
+    		background: red;
+    	}
+    	.seats-block{
+    		height: 277px;
+    		width: 550px;
+    	}
+    	.inblock {
+    		display: inline-block;
+    		float: left;
+    		height: 250px;
+    	}
+    	.blocks-wrapper {
+    		display: block;
+    		width: 900px;
+    		height: 250px;
+    	}
+    	input[type="number"]{
+    		box-sizing: border-box;
+    		font: 18px bold;
+    		width: 100px;
+    		height: 40px;
+    		margin-bottom: 10px;
+    		padding: 10px;
+    	}
+    	.tickets {
+    		box-sizing: border-box;
+    		padding: 20px 30px;
+    	}
+    </style>
+</head>
+<body>
+    <!--========== HEADER ==========-->
+	<div class="header">
+		<a href="#body" class="logo">Almaty Cinema</a>
+		<div class="header-links">
+			<a href="/profile/">My profile</a>
+			<a href="/cinemas/">Buy Ticket</a>
+		</div>
+	</div>
+
+	<!--========== CONTENT ==========-->
+	<div class="content">
+		<!--========== Contents will change up to page ==========-->
+		<div class="inner-content">
+			<h2>Film: {{filmname}}</h2>
+			<form action="/bookseats/" method="post">
+				<div class="blocks-wrapper">
+					<div class="seats-block inblock">
+					{% csrf_token %}
+					{% for s in seats %}
+						{% if s.3 %}
+						<div class="seatrow">
+						{% endif %}
+
+						<label>
+							<input type="checkbox" name="seat-input" id="input{{ s.1 }}" class="myseat" value="{{s.0}}"
+								   onclick="choose('seat{{ s.1 }}', 'input{{ s.1 }}')">
+							<div id="seat{{ s.1 }}" class="seat {% if s.2 %}booked{% endif %}">Seat {{ s.1 }}</div>
+						</label>
+
+						{% if s.4 %}
+						</div>
+						{% endif %}
+					{% endfor %}
+					</div>
+
+					<div class="tickets inblock">
+						<input type="number" min="0" placeholder="kids" name="kids" required><br/>
+						<input type="number" min="0" placeholder="students" name="students" required><br/>
+						<input type="number" min="0" placeholder="adults" name="adults" required><br/>
+					</div>
+				</div>
+
+				<button type="submit" onclick="alert('Your Order is accepted!')">Submit</button>
+			</form>
+		</div>
+	</div>
+
+	<!--========== FOOTER ==========-->
+	<div class="footer">
+		<p>Enjoy watching</p>
+	</div>
+</body>
+</html>
